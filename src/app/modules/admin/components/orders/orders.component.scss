@@ -1,0 +1,18 @@
+.my_class
+{
+    height: 285px;
+    overflow-y: auto ;
+}
+
+::ng-deep mat-tab-group mat-tab-header{
+width: 520px !important;
+} 
+
+
+::ng-deep .mat-mdc-standard-chip:not(.mdc-evolution-chip--disabled) {
+    background-color: green !important;
+}
+
+::ng-deep .mat-mdc-standard-chip:not(.mdc-evolution-chip--disabled) .mdc-evolution-chip__text-label {
+    color: white !important;
+}

@@ -1,0 +1,42 @@
+.single-product-actions-item {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.product-quantity-count {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    margin: 0;
+    border: 1px solid #E5E5E5;
+}
+
+.product-quantity-count .qty-btn {
+    font-size: 20px;
+    line-height: 1;
+    width: 30px;
+    padding: 10px;
+    text-align: center;
+    border: none;
+    background-color: transparent;
+}
+
+.product-quantity-count .product-quantity-box {
+    font-size: 14px;
+    line-height: 1;
+    width: 30px;
+    text-align: center;
+    border: none;
+    background-color: transparent;
+}
+
+.product-quantity-count .qty-btn {
+    font-size: 20px;
+    line-height: 1;
+    width: 30px;
+    padding: 10px;
+    text-align: center;
+    border: none;
+    background-color: transparent;
+}

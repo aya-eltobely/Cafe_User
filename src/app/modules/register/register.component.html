@@ -1,0 +1,101 @@
+<div class="w-[50%] flex flex-col mx-auto p-5">
+
+    <h1 class="text-center text-[40px] mb-9">Register</h1>
+
+    <form class="example-form grid grid-row-2" [formGroup]="registerForm" >
+    
+    
+        <div class="flex justify-between gap-3">
+            <mat-form-field class=" w-[50%]">
+                <mat-label>First Name</mat-label>
+                <input type="text" matInput formControlName="firstName">
+                @if ( registerForm.get("firstName")?.hasError('required') && registerForm.get("firstName")?.touched ) {
+                <mat-error>Please enter your first name</mat-error>
+                }
+            </mat-form-field>
+        
+            <mat-form-field class=" w-[50%]">
+                <mat-label>Last Name</mat-label>
+                <input type="text" matInput formControlName="lastName">
+                @if ( registerForm.get("lastName")?.hasError('required') && registerForm.get("lastName")?.touched ) {
+                <mat-error>Please enter your last name</mat-error>
+                }
+            </mat-form-field>
+        </div>
+    
+       <div class="flex justify-between gap-3 mt-3">
+        <mat-form-field class=" w-[50%]">
+            <mat-label>Email</mat-label>
+            <input type="text" matInput formControlName="email">
+            @if ( registerForm.get("email")?.hasError('required') && registerForm.get("email")?.touched ) {
+            <mat-error>Please enter your email</mat-error>
+            }
+            @if ( registerForm.get("email")?.hasError('invalidEmail') && (!registerForm.get("email")?.hasError('required'))
+            ) {
+            <mat-error>Please enter valid email</mat-error>
+            }
+        </mat-form-field>
+    
+        <mat-form-field class=" w-[50%]">
+            <mat-label>User Name</mat-label>
+            <input type="text" matInput formControlName="userName">
+            @if ( registerForm.get("userName")?.hasError('required') && registerForm.get("userName")?.touched ) {
+            <mat-error>Please enter your user name</mat-error>
+            }
+        </mat-form-field>
+       </div>
+    
+        <div  class="flex justify-between gap-3 mt-3">
+            <mat-form-field class="w-[50%]">
+                <mat-label>Password</mat-label>
+                <input  matInput [type]="passhide ? 'password' : 'text'" formControlName="password">
+                <button mat-icon-button matSuffix (click)="passhide = !passhide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="passhide">
+                    <mat-icon>{{passhide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </button>
+                @if ( registerForm.get("password")?.hasError('required') && registerForm.get("password")?.touched ) {
+                <mat-error>Please enter your password</mat-error>
+                }
+                @if ( registerForm.get("password")?.hasError('pattern') ) {
+                    <mat-error>password must be Minimum 8 characters,at least one from uppercase & lowercase letter,number and special character</mat-error>
+                }
+            </mat-form-field>
+        
+            <mat-form-field class="w-[50%]">
+                <mat-label>Confirm Password</mat-label>
+                <input  matInput [type]="confpasshide ? 'password' : 'text'" formControlName="confirmPassword">
+                <button mat-icon-button matSuffix (click)="confpasshide = !confpasshide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="confpasshide">
+                    <mat-icon>{{confpasshide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </button>
+                @if ( registerForm.get("confirmPassword")?.hasError('required') && registerForm.get("confirmPassword")?.touched
+                ) {
+                <mat-error>Please enter confirmed password</mat-error>
+                }
+                @if ( registerForm.get("confirmPassword")?.hasError('pattern') ) {
+                <mat-error>password must be Minimum 8 characters,at least one from uppercase & lowercase letter,number and special character</mat-error>
+                }
+                @if ( registerForm.hasError('isNotMatch') ) {
+                    <mat-error>password and confirm password not matching</mat-error>
+                    }
+            </mat-form-field>
+        
+            
+        </div>
+    
+        <div>
+            <mat-form-field class="w-[50%] mt-3">
+                <mat-label>PhoneNumber</mat-label>
+                <input type="text" matInput formControlName="phoneNumber">
+                @if ( registerForm.get("phoneNumber")?.hasError('required') && registerForm.get("phoneNumber")?.touched ) {
+                <mat-error>Please enter your phonenumber</mat-error>
+                }
+            </mat-form-field>
+        </div>
+    
+    
+    </form>
+
+    <div class="text-center">
+        <button mat-raised-button color="primary w-[60%]" style="background-color: #4b6a7b;" (click)="submitRegisterForm()">Register</button>
+    </div>
+
+</div>

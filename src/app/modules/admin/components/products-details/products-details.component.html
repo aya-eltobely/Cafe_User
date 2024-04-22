@@ -1,0 +1,54 @@
+<div *ngIf="product" class="example-card flex justify-around   p-5 gap-10  relative  ">
+
+    <div class="absolute top-6 right-10 cursor-pointer" (click)="onClose()">
+        <mat-icon class=" text-[30px] text-[#4d6a7d]"> close </mat-icon>
+    </div>
+
+    <div class="w-[40%]">
+        <img [src]="'data: ' + product.contentType + ';base64, ' + product.imageData" class="w-full"
+            alt="Photo of a Shiba Inu">
+    </div>
+
+    <div class="w-[60%]">
+        <div class="">
+
+            <h1 class="text-[30px] font-[500] leading-[1.5] w-[80%]" style=" font-family: 'Crafty Girls', cursive;">
+                {{product.name}}
+            </h1>
+
+            <p class="text-[20px] mt-4 ">
+                {{product.description}}
+            </p>
+
+            <p class="text-[#945c44] font-bold mt-4">
+                {{product.price | egyCurrency}}
+            </p>
+
+            <!-- <p class="mt-5"  >
+                <mat-chip-listbox aria-label="Fish selection" (change)="onSelectionChange($event)">
+                    Size : 
+                    <mat-chip-option value="1">S</mat-chip-option>
+                    <mat-chip-option value="2">M</mat-chip-option>
+                    <mat-chip-option value="3">L</mat-chip-option>
+                  </mat-chip-listbox>
+            </p> -->
+
+            <div class="single-product-actions-item flex mt-6">
+                <div class="product-quantity-count">
+                    <button (click)="onDescrease()" class="dec qty-btn">-</button>
+                    <input class="product-quantity-box" disabled type="text" name="quantity" [(ngModel)]="quantity">
+                    <button (click)="onEncrease()" class="inc qty-btn">+</button>
+                </div>
+            </div>
+
+        </div>
+        <div class="card_actions mt-9">
+            <!-- <button  (click)="viewProdct(prod.id)" > <mat-icon>visibility</mat-icon> </button>
+                <button  > <mat-icon>add_shopping_cart</mat-icon> </button> -->
+
+                <button mat-raised-button color="primary" style="background-color: #4d6a7d !important;" (click)="onAddToCart()">Add To Cart</button>
+
+        </div>
+    </div>
+
+</div>

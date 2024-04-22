@@ -1,0 +1,182 @@
+<div class="font-[sans-serif] bg-white">
+  <div class="max-lg:max-w-xl mx-auto w-full">
+    <div class="grid lg:grid-cols-3 gap-6">
+
+
+      <div class="lg:col-span-2 max-lg:order-1 p-6 max-w-4xl mx-auto w-full">
+        <div class="text-center max-lg:hidden">
+          <h2 class="text-3xl   text-[#333] inline-block border-b-4 border-[#333] pb-1">Checkout</h2>
+        </div>
+        <form class="lg:mt-12">
+          <div>
+            <h2 class="text-2xl font-extrabold text-[#333]">Shipping info</h2>
+
+            <form [formGroup]="formOrder">
+              <div class="grid grid-cols-2 gap-6 mt-8">
+
+                <!-- <div> -->
+                  <!-- <input type="text" placeholder="Name" formControlName="name"
+                    class="px-2 py-3.5 bg-white text-[#333] w-full text-sm border-b-2 focus:border-[#333] outline-none" />
+                  <small *ngIf="formOrder.get('name')?.hasError('required') && formOrder.get('name')?.touched" class="text-[red]"> Name
+                     is required </small> -->
+                     <mat-form-field class="example-full-width">
+                      <mat-label>Name</mat-label>
+                      <input type="text" matInput formControlName="name" class="px-2 py-3.5 bg-white text-[#333] w-full text-sm border-b-2 focus:border-[#333] outline-none">
+                      @if (formOrder.get('name')?.hasError('required') && formOrder.get('name')?.touched) {
+                        <mat-error>Name is required</mat-error>
+                      }
+                    </mat-form-field>
+                <!-- </div> -->
+
+                <!-- <div> -->
+                  <!-- <input type="email" placeholder="Email address" formControlName="email"
+                    class="px-2 py-3.5 bg-white text-[#333] w-full text-sm border-b-2 focus:border-[#333] outline-none" />
+                  <small *ngIf="formOrder.get('email')?.hasError('required') && formOrder.get('email')?.touched" class="text-[red]"> Email
+                    is required </small>
+                  <p><small *ngIf="formOrder.get('email')?.hasError('invalidEmail') && formOrder.get('email')?.touched && !formOrder.get('email')?.hasError('required') " class="text-[red]"> Email
+                    is Invalid</small></p> -->
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Email</mat-label>
+                      <input type="text" matInput formControlName="email" class="px-2 py-3.5 bg-white text-[#333] w-full text-sm border-b-2 focus:border-[#333] outline-none">
+                      @if (formOrder.get('email')?.hasError('required') && formOrder.get('email')?.touched) {
+                        <mat-error>Email is required</mat-error>
+                      }
+                      @if (formOrder.get('email')?.hasError('invalidEmail') && formOrder.get('email')?.touched && !formOrder.get('email')?.hasError('required')) {
+                        <mat-error>Email is Invalid</mat-error>
+                      }
+                    </mat-form-field>
+                <!-- </div> -->
+                
+
+                <mat-form-field class="example-full-width">
+                  <mat-label>State</mat-label>
+                  <input type="text"
+                         placeholder="Pick one"
+                         aria-label="Number"
+                         matInput
+                         [formControl]="statesControl"
+                         [matAutocomplete]="statesauto"
+                         (input)="onTypeState($event)"
+                         >
+                  <mat-autocomplete autoActiveFirstOption #statesauto="matAutocomplete" (optionSelected)="onSelectState(statesControl.value)">
+                      <mat-option  *ngFor="let option of satesFilteredOptions | async" [value]="option" >{{option}}</mat-option>
+                  </mat-autocomplete>
+                  <mat-error *ngIf="statesControl?.hasError('required') && statesControl?.touched" class="text-[red]"> State
+                    is required </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                  <mat-label>City</mat-label>
+                  <input type="text"
+                         placeholder="Pick one"
+                         aria-label="Number"
+                         matInput
+                         [formControl]="citiesControl"
+                         [matAutocomplete]="citiesauto">
+                  <mat-autocomplete autoActiveFirstOption #citiesauto="matAutocomplete">
+                      <mat-option *ngFor="let opt of citiesFilteredOptions | async" [value]="opt">{{opt}}</mat-option>
+                  </mat-autocomplete>
+                  <mat-error *ngIf="citiesControl?.hasError('required') && citiesControl?.touched" class="text-[red]"> City
+                    is required </mat-error>
+                </mat-form-field>
+
+
+                <!-- <div> -->
+                  <!-- <input type="text" placeholder="Street" formControlName="street"
+                  class="px-2 py-3.5 bg-white text-[#333] w-full text-sm border-b-2 focus:border-[#333] outline-none" />
+                  <small *ngIf="formOrder.get('street')?.hasError('required') && formOrder.get('street')?.touched" class="text-[red]"> Street
+                    is required </small> -->
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Street</mat-label>
+                      <input type="text" matInput formControlName="street" class="px-2 py-3.5 bg-white text-[#333] w-full text-sm border-b-2 focus:border-[#333] outline-none">
+                      @if (formOrder.get('street')?.hasError('required') && formOrder.get('street')?.touched) {
+                        <mat-error>Street is required</mat-error>
+                      }
+                    </mat-form-field>
+                <!-- </div> -->
+
+                <!-- <div> -->
+                  <!-- <input type="text" placeholder="Phone" formControlName="phone"
+                  class="px-2 py-3.5 bg-white text-[#333] w-full text-sm border-b-2 focus:border-[#333] outline-none" />
+                  <small *ngIf="formOrder.get('phone')?.hasError('required') && formOrder.get('phone')?.touched" class="text-[red]"> Phone
+                    is required </small> -->
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Phone</mat-label>
+                      <input type="text" matInput formControlName="phone" class="px-2 py-3.5 bg-white text-[#333] w-full text-sm border-b-2 focus:border-[#333] outline-none">
+                      @if (formOrder.get('phone')?.hasError('required') && formOrder.get('phone')?.touched) {
+                        <mat-error>Phone is required</mat-error>
+                      }
+                    </mat-form-field>
+                <!-- </div> -->
+
+              </div>
+            </form>
+          </div>
+
+
+          <div class="mt-12">
+            <h2 class="text-2xl font-extrabold text-[#333]">Payment</h2>
+            <div class="grid gap-4 sm:grid-cols-2 mt-8">
+              <div class="flex items-center">
+                <input type="radio" class="w-5 h-5 cursor-pointer" id="card" checked />
+                <label for="card" class="ml-4 flex gap-2 cursor-pointer">
+                  Cash
+                </label>
+              </div>
+
+            </div>
+
+
+            <div class="mt-5 ">
+              <p class="ml-4">You Can Pay When Get Your Order</p>
+            </div>
+
+
+          </div>
+          <div class="flex flex-wrap gap-4 mt-8">
+            <button (click)="onBack()" type="button"
+              class="min-w-[150px] px-6 py-3.5 text-sm bg-gray-100 text-[#333] rounded-md hover:bg-gray-200">Back</button>
+            <button (click)="onConfirm()" type="button"
+              class="min-w-[150px] px-6 py-3.5 text-sm bg-[#4d6a7d] text-white rounded-md hover:bg-[#4d6a7d]">Confirm
+              Order</button>
+          </div>
+        </form>
+      </div>
+
+
+      <div class="lg:col-span-1  p-6 w-full mt-16">
+        <h4 class="flex justify-between items-center mb-3">
+          <span class="text-gray-500 font-[500] text-[25px]">Your Cart</span>
+          <span class="badge bg-gray-500 text-white px-2 py-1 rounded-full">{{cartNumber}}</span>
+        </h4>
+        <div class=" border-2 border-solid border-[gray] sticky top-0 z-50 rounded-[5px] p-[25px]">
+          <ul class="mb-3 ">
+            <li class="flex justify-between mt-[20px]" *ngFor="let item of cartData">
+              <div class="w-[70%]">
+                <h6 class="my-0 text-[15px] font-[500] leading-5"> {{item.productName}} </h6>
+                <small class="text-gray-500">Quantity: {{item.quantity }} </small>
+                <small class="text-gray-500"> Price: {{ item.productPrice}}</small>
+              </div>
+              <div>
+                <span class="text-gray-500">{{item.subTotal}}</span>
+              </div>
+            </li>
+
+            <li class="list-group-item flex justify-between pt-[30px]">
+              <span>Shipping</span>
+              <span>60</span>
+            </li>
+
+            <li class="list-group-item flex justify-between pt-[30px]">
+              <span>Total</span>
+              <strong class="text-[20px]">{{totalOrder}}</strong>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+</div>

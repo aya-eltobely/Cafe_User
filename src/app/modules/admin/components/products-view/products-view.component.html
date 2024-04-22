@@ -1,0 +1,45 @@
+
+<!-- <div class="eat_header">
+    <div class="layer"></div>
+    <h1 class="eat_header_info" > Delicious Food</h1>
+</div> -->
+
+<div class="bg-[#f9f9f9] w-[100%] pl-[100px] py-4">
+    <p class="text-[20px]"> Home / {{titleName}} </p>
+</div>
+
+
+<section class="cards my-16 mx-16 grid grid-cols-3 ">
+
+    @for (prod of allProducts | paginate: { itemsPerPage: 6, currentPage: page,totalItems:totalItem } ; track $index) {
+      <div class="  mt-5 " >
+        <mat-card class="example-card p-5" style="border-radius: 10px;">
+
+          <img mat-card-image [src]="'data:' + prod['contentType'] + ';base64, ' + prod['imageData']" alt="Photo of a Shiba Inu">
+  
+          <mat-card-content class="mt-5">
+            <p class="text-[17px] font-[400]">
+              {{prod.name}}
+            </p>
+            <p class="text-[#945c44] font-bold mt-3">
+              {{prod.price | egyCurrency}}
+            </p>
+          </mat-card-content>
+          <mat-card-actions class="card_actions">
+            <button  (click)="viewProdct(prod.id)" > <mat-icon>visibility</mat-icon> </button>
+            <button  (click)="addToCart(prod.id)" > <mat-icon>add_shopping_cart</mat-icon> </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    }
+      
+</section>
+ 
+
+<div class="flex justify-center">
+<pagination-controls (pageChange)="onPageChange($event)" previousLabel="<"
+nextLabel=">"></pagination-controls>
+
+</div>
+
+

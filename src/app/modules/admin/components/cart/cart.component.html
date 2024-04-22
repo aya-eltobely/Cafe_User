@@ -1,0 +1,153 @@
+<section
+    class=" relative z-10 after:contents-[''] after:absolute after:z-0 after:h-full xl:after:w-1/3 after:top-0 after:right-0 after:bg-gray-50">
+    <div class="w-full max-w-7xl px-4 md:px-5 lg-6 mx-auto relative z-10">
+        <div class="grid grid-cols-12">
+            <div 
+                class="col-span-12 xl:col-span-8 lg:pr-8 pt-14 pb-8 lg:py-10 w-full max-xl:max-w-3xl max-xl:mx-auto">
+
+
+                <div class="flex items-center justify-between pb-8 border-b border-gray-300">
+                    <h2 class="font-manrope  text-2xl leading-10 text-black">Shopping Cart</h2>
+                    <h2 class="font-manrope  text-2xl leading-10 text-black"> {{cartNumber}} Items</h2>
+                </div>
+
+
+                <div class="grid grid-cols-12 mt-8 max-md:hidden pb-6 border-b border-gray-200">
+
+                    <div class="col-span-12 md:col-span-7">
+                        <p class="font-normal text-lg leading-8 text-gray-400">Product Details</p>
+                    </div>
+
+                    <div class="col-span-12 md:col-span-5">
+                        <div class="grid grid-cols-6">
+                            <div class="col-span-2">
+                                <p class="font-normal text-lg leading-8 text-gray-400 text-center">Quantity</p>
+                            </div>
+                            <div class="col-span-2">
+                                <p class="font-normal text-lg leading-8 text-gray-400 text-center">Total</p>
+                            </div>
+                            <div class="col-span-2">
+                                <p class="font-normal text-lg leading-8 text-gray-400 text-center"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                @for (item of cartData; track $index) {
+
+                <div
+                    class="flex flex-col min-[500px]:flex-row min-[500px]:items-center gap-5 py-6  border-b border-gray-200">
+
+                    <div class="w-full md:max-w-[126px]">
+                        <img [src]="'data: ' + item.contentType + ';base64, ' + item.imageData"
+                            alt="perfume bottle image" class="mx-auto">
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-5 w-full">
+
+                        <div class="md:col-span-2">
+                            <div class="flex flex-col max-[500px]:items-center gap-3">
+                                <h6 class="font-semibold text-base leading-7 text-black"> {{item.productName}} </h6>
+                                <h6 class="font-normal text-base leading-7 text-gray-500"> {{item.productPrice |
+                                    egyCurrency}}</h6>
+                            </div>
+                        </div>
+
+                        <div class="single-product-actions-item flex mt-6 col:span-2">
+                            <div class="product-quantity-count">
+                                <button (click)="onDescrease(item)" class="dec qty-btn">-</button>
+                                <input class="product-quantity-box" disabled type="text" name="quantity"
+                                    [value]="item.quantity">
+                                <button (click)="onEncrease(item)" class="inc qty-btn">+</button>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center max-[500px]:justify-center md:justify-center max-md:mt-3 h-full">
+                            <p class=" text-lg leading-8  text-center ml-0">{{item.subTotal}}
+                            </p>
+                        </div>
+                        <div (click)="deleteCartItem(item)"
+                            class="flex items-center max-[500px]:justify-center md:justify-center max-md:mt-3 h-full  cursor-pointer text-[red]">
+                            <mat-icon>delete_forever</mat-icon>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                }
+                @empty {
+                <p class="text-center mt-10 text-[20px] ">There is no data in Cart</p>
+                }
+
+
+
+
+
+
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+            <!-- order summary -->
+
+
+            <div
+                class=" col-span-12 xl:col-span-4 bg-gray-50 w-full max-xl:px-6 max-w-3xl xl:max-w-lg mx-auto lg:pl-8 py-24">
+                <h2 class="font-manrope  text-3xl leading-10 text-black pb-8 border-b border-gray-300">
+                    Order Summary</h2>
+                <div class="mt-8">
+                    <div class="flex items-center justify-between pb-6">
+                        <p class="font-normal text-lg leading-8 text-black">{{cartNumber}} Items</p>
+                        <p class="font-medium text-lg leading-8 text-black"> {{totalOrderWithoutShipping | egyCurrency}}
+                        </p>
+                    </div>
+                    <form>
+                        <label class="flex  items-center mb-1.5 text-gray-600 text-sm font-medium">Shipping
+                        </label>
+                        <div class="flex pb-6">
+                            <div class="relative w-full">
+
+                                <input disabled type="text"
+                                    class="block w-full h-11 p-3 text-base font-normal shadow-xs text-gray-900 bg-white border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-gray-400"
+                                    placeholder="Egp 60.00">
+
+                            </div>
+                        </div>
+
+
+                        <div class="flex items-center justify-between py-8">
+                            <p class="font-medium text-xl leading-8 text-black">{{cartNumber}} Items</p>
+                            <p class="font-semibold text-xl leading-8 text-[#774d2c]">
+                                {{totalOrderWithShipping|egyCurrency}}</p>
+                        </div>
+                        <button (click)="onCheckout()" [disabled]="isCartEmpty()" class="w-full text-center bg-[#4d6a7d] rounded-full py-4 px-6 font-semibold text-lg text-white transition-all duration-500 hover:bg-[#4d6a7d] tracking-[2px]">
+                            Checkout</button>
+                    </form>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+</section>

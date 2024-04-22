@@ -1,0 +1,84 @@
+<div>
+  <mat-toolbar style="background-color: #fff;box-shadow: 3px -2px 12px -1px rgba(0,0,0,0.75);">
+    <mat-toolbar-row class="flex justify-between items-center">
+
+
+      <span style="font-family: 'Crafty Girls', cursive;font-weight: 900;color: #774d2c;" > <a routerLink="/">Caffeine Dreams</a>
+      </span>
+      <span class="example-spacer"></span>
+
+
+      <div class="lg:flex hidden gap-4">
+
+        <a routerLink="/cart"  class="relative pt-[7px] cursor-pointer">
+          <span class="absolute top-[-13px] right-[-5px] text-[16px]">{{cartNumber}}</span>
+          
+          <mat-icon style="height: 20px;width: 23px;" class="hover:text-[#774d2c;]" >shopping_cart</mat-icon>
+        </a>
+      
+        <div class="font-[400]">
+          <div [matMenuTriggerFor]="services" aria-label="Example icon-button with a menu" class="flex gap-2">
+            <p class="pt-[5px] text-[18px] hover:text-[#774d2c;] cursor-pointer"> services </p>
+          </div>
+          <mat-menu #services="matMenu">
+
+            @for (cat of allCategories; track $index) {
+            <button mat-menu-item (click)="onNavigate(cat.name,cat.id)">
+              <a> {{cat.name}} </a>
+            </button>
+            }
+          </mat-menu>
+        </div>
+
+
+        <div class="hidden md:flex justify-between text-black font-[400]" *ngIf="accountServices.islogged.getValue() ; else abc" >
+          <div [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" class="flex gap-2  w-[250px]">
+            <p class="pt-[5px] text-[18px] hover:text-[#774d2c;] cursor-pointer"> welcome <span class="text-[#774d2c]"> {{userName}} </span> </p>
+          </div>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="onOrderHistory()">
+              <mat-icon>history</mat-icon>
+              <span>Your Orders</span>
+            </button>
+            <button mat-menu-item (click)="onlogout()">
+              <mat-icon>logout</mat-icon>
+              <span>Log Out</span>
+            </button>
+            
+          </mat-menu>
+        </div>
+
+        <ng-template class=" flex gap-4 text-black font-[400]" #abc>
+          <div>
+            <div [matMenuTriggerFor]="menu2" aria-label="Example icon-button with a menu" class="flex gap-2 ">
+              <p class="pt-[5px] text-[18px] hover:text-[#774d2c;] cursor-pointer"> account </p>
+            </div>
+            <mat-menu #menu2="matMenu">
+              <button mat-menu-item routerLink="/register">
+                <a> Register </a>
+              </button>
+              <button mat-menu-item routerLink="/login">
+                <a> Log In </a>
+              </button>
+
+            </mat-menu>
+          </div>
+        </ng-template>
+
+      </div>
+
+
+      <div class="lg:hidden sm:block">
+
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with menu icon">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <!-- <button mat-menu-item>Logout</button>
+          <button mat-menu-item>Signup</button> -->
+        </mat-menu>
+      </div>
+
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>

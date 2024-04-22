@@ -1,0 +1,121 @@
+.eat_header
+{
+    background-image: url('../../../../../assets/rs1.jpg');
+    width: 100%;
+    height: 30%;
+    background-position: center 34%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+.eat_header .layer
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+}
+.example-card {
+    max-width: 300px;
+    min-height: 400px;
+  }
+  
+  .example-card:hover
+  {
+    box-shadow: 3px 1px 11px -4px rgba(0,0,0,0.5);
+    transition: all .3s;
+    
+  }
+
+  .card_actions
+  {
+    display: none;
+  }
+
+  .example-card:hover .card_actions
+  {
+    display: block;
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: red;
+    z-index: 40;
+    border-radius: 30px;
+    background-color: white;
+    padding: 9px;
+    box-shadow: 3px 1px 11px -4px rgba(0,0,0,0.5);
+  }
+
+  .card_actions button
+  {
+    padding: 7px 20px;
+
+  }
+
+  .card_actions button:hover
+  {
+    color: #945c44;
+  }
+.eat_header_info
+  {
+    font-family: 'Crafty Girls', cursive;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 35px;
+  }
+
+ ::ng-deep .ngx-pagination .pagination-previous a::before,
+ ::ng-deep .ngx-pagination .pagination-previous.disabled::before,
+ ::ng-deep .ngx-pagination .pagination-next a::after,
+ ::ng-deep .ngx-pagination .pagination-next.disabled::after { 
+    content: '' !important; 
+  }
+  
+  ::ng-deep .ngx-pagination li,
+  ::ng-deep .ngx-pagination li .current {
+    margin: 0 10px;
+    font-size: 25px !important;
+    border-radius: 50% !important;
+    a{
+      padding:.1875rem .8rem !important;
+      &:hover{
+        background-color: #c7a17a;
+        color: white;
+        border-radius: 50% !important;
+        span{
+          padding: 0px 2px !important;
+        }
+      }
+    }
+    span{
+      padding: 0px 2px !important;
+    }
+  }
+
+
+  ::ng-deep .ngx-pagination .current{
+    background-color: #c7a17a !important;
+
+  }
+
+
+
+  ::ng-deep  ul.ngx-pagination li.pagination-previous a,
+  ::ng-deep  ul.ngx-pagination li.pagination-next a{
+    padding:.1875rem .625rem;
+  // font-size: 20px; /* Adjust the font size for next and previous buttons */
+  // padding: 8px 15px; /* Adjust padding for next and previous buttons */
+  // background-color: #ddd; /* Background color for next and previous buttons */
+  // color: #333; /* Text color for next and previous buttons */
+  // border: none; /* Remove border for next and previous buttons */
+  // border-radius: 5px; /* Add border radius for next and previous buttons */
+}
+
+
+ 

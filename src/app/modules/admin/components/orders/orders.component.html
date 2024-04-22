@@ -1,0 +1,134 @@
+<div class="mt-12 w-[80%] m-auto">
+    <mat-tab-group>
+
+        <mat-tab label="Current / Completed Orders">
+
+            <hr>
+
+            
+            <fieldset class="m-10 border-2 p-4 rounded my_class" *ngFor="let order of currComporderHistory">
+
+
+                <div class="grid grid-cols-5 py-4">
+                    <div class="flex items-center gap-2 ">
+                        <p> Order Number: </p>
+                        <p class=" text-[#9a9b9d]"> {{ order.orderId}}</p>
+                    </div>
+                    <div class="flex items-center gap-2 ">
+                        <p> Date: </p>
+                        <p class=" text-[#9a9b9d]"> {{order.orderDate | date }}</p>
+                    </div>
+                    <div class="flex items-center gap-2 ">
+                        <p> Total: </p>
+                        <p class=" text-[#9a9b9d]"> {{order.orderTotal  | egyCurrency }}</p>
+                    </div>
+                    <div class="flex items-center gap-2 ">
+                        <p> Status: </p>
+                        <p class=" text-[#9a9b9d]">
+                            <mat-chip-set aria-label="Dog selection" *ngIf=" order.orderStatus == 'Pendding' || (order.orderStatus == 'Approved' && order.deliverystatus == 'Waiting' )   ">
+                                <mat-chip class="bg-[red]">  Watting to approved </mat-chip>
+                            </mat-chip-set>
+                            <mat-chip-set aria-label="Dog selection" *ngIf="order.deliverystatus == 'Pendding' ">
+                                <mat-chip class="bg-[red]">  Watting delivery </mat-chip>
+                            </mat-chip-set>
+                            <mat-chip-set aria-label="Dog selection" *ngIf="order.deliverystatus == 'OnWay' ">
+                                <mat-chip class="bg-[red]">  Order on way </mat-chip>
+                            </mat-chip-set>
+                            <mat-chip-set aria-label="Dog selection" *ngIf="order.deliverystatus == 'Done' ">
+                                <mat-chip class="bg-[red]">  Order has been delivered </mat-chip>
+                            </mat-chip-set>
+                        </p>
+                    </div>
+                    <div *ngIf="order.orderStatus == 'Pendding'" class="ml-8">
+                        <button  mat-raised-button color="warn" (click)="DeclineOrder(order.orderId)">Decline</button>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div *ngFor="let product of order.products"
+                    class="flex flex-col min-[500px]:flex-row min-[500px]:items-center gap-5 py-6  border-b border-gray-200">
+
+                    <div class="w-full md:max-w-[126px]">
+                        <img  class="rounded-full" [src]="'data: ' + product.imageContentType + ';base64, ' + product.imageDataa" alt="perfume bottle image" class="mx-auto">
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-5 w-full">
+
+                        <div class="md:col-span-2">
+                            <div class="flex flex-col max-[500px]:items-center gap-3">
+                                <h6 class=" leading-5 text-black"> {{product.productName}} </h6>
+                                <h6 class="font-normal text-base leading-7 text-gray-500"> Quantity :  {{product.totalQuantity}} </h6>
+                                <h6 class="font-normal text-base leading-7 text-gray-500"> SubTotal :  {{product.totalSubTotal}} </h6>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                </div>
+
+            </fieldset>
+
+
+        </mat-tab>
+
+
+
+        <mat-tab label="Rejected Orders"> 
+            <hr>
+
+            <fieldset class="m-10 border-2 p-4 rounded my_class"  *ngFor="let order of rejectedorderHistory">
+
+                <div class="grid grid-cols-5 py-4">
+                    <div class="flex items-center gap-2 ">
+                        <p> Order Number: </p>
+                        <p class=" text-[#9a9b9d]"> {{ order.orderId}}</p>
+                    </div>
+                    <div class="flex items-center gap-2 ">
+                        <p> Date: </p>
+                        <p class=" text-[#9a9b9d]"> {{order.orderDate | date }}</p>
+                    </div>
+                    <div class="flex items-center gap-2 ">
+                        <p> Total: </p>
+                        <p class=" text-[#9a9b9d]"> {{order.orderTotal  | egyCurrency }}</p>
+                    </div>
+                    <div class="flex items-center gap-2 ">
+                        <p> Status: </p>
+                        <p class=" text-[#9a9b9d]">
+                            <span class="bg-[#a26244] text-white p-[5px] rounded">Rejected</span>
+                        </p>
+                    </div>
+                    <div *ngIf="order.orderStatus == 'Pendding'">
+                        <button  mat-raised-button color="warn" (click)="DeclineOrder(order.orderId)">Decline Order</button>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div *ngFor="let product of order.products"
+                    class="flex flex-col min-[500px]:flex-row min-[500px]:items-center gap-5 py-6  border-b border-gray-200">
+
+                    <div class="w-full md:max-w-[126px]">
+                        <img class="rounded-full" [src]="'data: ' + product.imageContentType + ';base64, ' + product.imageDataa" alt="perfume bottle image" class="mx-auto">
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-5 w-full">
+
+                        <div class="md:col-span-2">
+                            <div class="flex flex-col max-[500px]:items-center gap-3">
+                                <h6 class=" leading-5 text-black"> {{product.productName}} </h6>
+                                <h6 class="font-normal text-base leading-7 text-gray-500"> Quantity :  {{product.totalQuantity}} </h6>
+                                <h6 class="font-normal text-base leading-7 text-gray-500"> SubTotal :  {{product.totalSubTotal}} </h6>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                </div>
+
+            </fieldset>
+        </mat-tab>
+
+
+    </mat-tab-group>
+</div>

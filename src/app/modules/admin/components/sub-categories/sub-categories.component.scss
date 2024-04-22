@@ -1,0 +1,10 @@
+.subcatImg 
+{
+    transition: all 10s;
+}
+.subcatImg :hover
+{
+    box-shadow: 1px 4px 14px -5px rgba(0,0,0,1);
+    transition: all .4s;
+
+}

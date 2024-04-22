@@ -1,0 +1,52 @@
+
+
+<div class="loginDiv" >
+    <form [formGroup]="loginForm" class="loginForm" >
+
+        <h1 class="text-center text-[40px] mb-9">Sign In</h1>
+
+        <div>
+            <mat-form-field class="w-full">
+    
+                <mat-label >  User Name</mat-label>
+                <input matInput formControlName="UserName">
+                @if (loginForm.get('UserName')?.hasError("required") && loginForm.get('UserName')?.touched ) {
+                    <mat-error > user name is required </mat-error> 
+                }
+              </mat-form-field>
+    
+            
+            
+        </div>
+    
+        <div>
+    
+            <div class="example-container">
+                <mat-form-field  class="w-full">
+                  <mat-label> Password</mat-label>
+                  <input matInput [type]="hide ? 'password' : 'text'" formControlName="Password">
+                  <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </button>
+    
+                  <!-- @if (loginForm.get('password')?.hasError("required") && loginForm.get('password')?.touched ) {
+                    <small> password is required </small>
+                } -->
+                @if (loginForm.get('Password')?.hasError("required") && loginForm.get('Password')?.touched ) {
+                    <mat-error > Password is required </mat-error> 
+                }
+    
+                </mat-form-field>
+    
+            </div>
+    
+    
+        </div>
+    
+        <div class="flex justify-center">
+            <button mat-raised-button class="submitBtn mt-3 text-right rounded w-[30%] "    (click)="submitForm()" >Log In</button>
+        </div>
+    
+    </form>
+    
+</div>

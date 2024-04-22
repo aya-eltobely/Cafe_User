@@ -1,0 +1,20 @@
+<div class="bg-[#f9f9f9] w-[100%] pl-[100px] py-4">
+    <p class="text-[20px]"> Home / {{titleName}} </p>
+</div>
+
+
+
+<div class="w-[80%] mx-auto my-5 flex justify-between flex-wrap">
+
+
+    <button class="flex  justify-start gap-2 w-[49%] mt-10 " *ngFor="let subcategory of allSubcategory"  (click)="onNavigate(subcategory.id,subcategory.name)">
+
+            <div class="subcatImg w-[20%]">
+                <img [src]="'data:' + subcategory['contentType'] + ';base64, ' + subcategory['imageData']" alt="" class=" w-[100%] rounded-full ">
+            </div>
+    
+            <h2 class="mt-10 ml-9 text-[20px]"> {{subcategory.name}} </h2>
+    
+    </button>
+
+</div>
